@@ -7,3 +7,6 @@ NODEMCU 0.9(ESP-12Module)
 CPU HZ = 80 Mhz
 Flash Size =4M(3M SPIFFS)
 Upload Speed = 115200
+
+https://www.youtube.com/watch?v=MqDpZTWbZFU
+
