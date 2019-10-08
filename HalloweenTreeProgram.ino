@@ -1,7 +1,7 @@
 #include <Adafruit_NeoPixel.h>
 
 #define PIN D3
-#define TRUNK_LED 77
+#define TRUNK_LED 50
 #define NUMBER_OF_LEDS 500
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUMBER_OF_LEDS, PIN, NEO_GRB + NEO_KHZ400);
@@ -13,7 +13,8 @@ enum TREE_STATE
   ORANGE_TREE,
   PURPLE_TREE,
   PURPLE_SPARK,
-  PURPLE_GLOW
+  PURPLE_GLOW,
+  PUMPKIN
 };
 
 void setup() 
@@ -185,12 +186,35 @@ void loop()
          if(timer > 800)
          {
             timer = 0;
-            CurrentTreeState = GREEN_TREE;
+            CurrentTreeState = PUMPKIN;
          }
          
       }
       break;
-      
+       
+      case(PUMPKIN):
+      {
+        //Turn off the trunk
+        for(int i = 0; i<NUMBER_OF_LEDS ; i++)
+        {
+           //This colors the trunk of the tree brown
+           if(i<TRUNK_LED)
+           {
+              strip.setPixelColor(i, 0, 0, 0);
+           }
+           //Color the rest of the tree green
+           else
+           {
+               strip.setPixelColor(i, 10, 40, 0);
+           }
+        }
+        timer ++;
+        if(timer>800)
+        {
+           timer =0;
+           CurrentTreeState = GREEN_TREE;
+        }
+     }
       default:
          strip.setPixelColor(100, 100, 100, 100);
       break;
